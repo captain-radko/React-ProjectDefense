@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <footer>
-            Stringify - Guitar Shop {new Date().getFullYear()}
+            <h4>Stringify - Guitar Shop {new Date().getFullYear()}</h4>
         </footer>
     )
 }
