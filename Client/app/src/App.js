@@ -4,6 +4,7 @@ import Home from './views/home';
 import NotFound from './views/not-found';
 import Header from './components/header';
 import Footer from './components/footer';
+import Login from './views/login';
 
 class App extends Component {
   render() {
@@ -14,6 +15,8 @@ class App extends Component {
             <Header />
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              {/* <Route exact path="/signup" component={Register} /> */}
               <Route component={NotFound} />
             </Switch>
             <Footer />
