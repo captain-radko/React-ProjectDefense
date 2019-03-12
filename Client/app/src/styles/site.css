@@ -1,6 +1,5 @@
 footer{
     color: black;
-    background-color: white;
     text-align: center;
     position: fixed;
     bottom: 0;
@@ -10,7 +9,6 @@ footer{
 }
 
 header{
-    color: black !important;
     box-shadow: 0px 2px 5px 2px #cecece;
 }
 
@@ -27,6 +25,6 @@ header{
 }
 
 .alert{
-    width: 40%;
+    width: 60%;
     margin: 0 auto;
 }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Redirect } from 'react-router-dom';
 import AuthenticationService from '../services/auth-service';
+import { UserConsumer } from "../context/auth-context";
 
 class Login extends Component {
     static service = new AuthenticationService();
@@ -10,7 +11,6 @@ class Login extends Component {
         email: '',
         password: '',
         error: '',
-        isLoggedIn: false,
     };
 
     handleChange = ({ target }) => {
@@ -22,18 +22,37 @@ class Login extends Component {
     handleSubmit = async (event) => {
         event.preventDefault();
 
+        const { email, password } = this.state;
+        const { updateUser } = this.props;
+
+        const credentials = {
+            email,
+            password
+        }
+
         this.setState({
             error: '',
         }, async () => {
             try {
-                const credentials = await Login.service.login();
+                const result = await Login.service.login(credentials);
 
-                console.log(credentials);
-                
+                if (!result.success) {
+                    const errors = Object.values(result.errors).join(' ');
 
-                this.setState({
+                    throw new Error(errors);
+                }
+
+                window.localStorage.setItem('auth_token', result.token);
+                window.localStorage.setItem('user', JSON.stringify({
+                    ...result.user,
                     isLoggedIn: true
+                }));
+
+                updateUser({
+                    isLoggedIn: true,
+                    ...result.user
                 });
+
             } catch (error) {
                 this.setState({
                     error: error.message,
@@ -43,7 +62,9 @@ class Login extends Component {
     };
 
     render() {
-        const { email, password, isLoggedIn, error } = this.state;
+        const { email, password, error } = this.state;
+        const { isLoggedIn } = this.props;
+
 
         if (isLoggedIn) {
             return (
@@ -55,8 +76,8 @@ class Login extends Component {
             < div class="container mt-5 wrapper" >
                 {
                     error.length
-                        ? 
-                        <Alert class="alert" variant="danger">
+                        ?
+                        <Alert dismissible class="alert" variant="danger">
                             {error}
                         </Alert>
                         : null
@@ -81,4 +102,20 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const LoginContext = (props) => {
+    return (
+        <UserConsumer>
+            {
+                ({ isLoggedIn, updateUser }) => (
+                    <Login
+                        {...props}
+                        isLoggedIn={isLoggedIn}
+                        updateUser={updateUser}
+                    />
+                )
+            }
+        </UserConsumer>
+    )
+}
+
+export default LoginContext;
