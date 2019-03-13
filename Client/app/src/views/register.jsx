@@ -4,7 +4,8 @@ import { Form, Button } from "react-bootstrap";
 class Register extends Component {
     render() {
         return (
-            < div class="container mt-5 wrapper" >
+            < div class="container mt-3 wrapper" >
+                <h1 class="display-1 mb-5">Register here</h1>
                 <Form id="bdr" class="form">
                     <Form.Group id="username">
                         <Form.Label>Username</Form.Label>

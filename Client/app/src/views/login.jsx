@@ -50,6 +50,7 @@ class Login extends Component {
 
                 updateUser({
                     isLoggedIn: true,
+                    updateUser,
                     ...result.user
                 });
 
@@ -73,7 +74,7 @@ class Login extends Component {
         }
 
         return (
-            < div class="container mt-5 wrapper" >
+            < div class="container mt-3 wrapper" >
                 {
                     error.length
                         ?
@@ -82,6 +83,7 @@ class Login extends Component {
                         </Alert>
                         : null
                 }
+                <h1 class='display-1 mb-5'>Login here</h1>
                 <Form onSubmit={this.handleSubmit} id="bdr" class="form">
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>

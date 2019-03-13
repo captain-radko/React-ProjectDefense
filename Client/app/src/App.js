@@ -1,12 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { UserProvider, defaultState } from "./context/auth-context";
+import AuthRoute from "./routes/auth-route";
+
 import Home from './views/home';
 import NotFound from './views/not-found';
-import Header from './components/header';
-import Footer from './components/footer';
 import Login from './views/login';
 import Register from './views/register';
-import { UserProvider, defaultState } from "./context/auth-context";
+import Logout from "./views/logout";
+import CreateGuitar from './views/create-guitar';
+
+import Header from './components/header';
+import Footer from './components/footer';
 
 class App extends Component {
   constructor(props) {
@@ -43,6 +48,8 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Register} />
+                <AuthRoute exact path="/create" component={CreateGuitar} allowedRoles={[ 'admin' ]} />
+                <AuthRoute exact path="/logout" component={Logout} />
                 <Route component={NotFound} />
               </Switch>
               <Footer />
