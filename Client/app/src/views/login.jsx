@@ -12,7 +12,7 @@ class Login extends Component {
         password: '',
         error: '',
     };
-
+ 
     handleChange = ({ target }) => {
         this.setState({
             [target.name]: target.value,
@@ -37,7 +37,7 @@ class Login extends Component {
                 const result = await Login.service.login(credentials);
 
                 if (!result.success) {
-                    const errors = Object.values(result.errors).join(' ');
+                    const errors = Object.values(result.errors).join('\n');
 
                     throw new Error(errors);
                 }
@@ -57,7 +57,7 @@ class Login extends Component {
             } catch (error) {
                 this.setState({
                     error: error.message,
-                })
+                }) 
             }
         })
     };

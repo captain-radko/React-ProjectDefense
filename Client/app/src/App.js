@@ -47,8 +47,8 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/signup" component={Register} />
-                <AuthRoute exact path="/create" component={CreateGuitar} allowedRoles={[ 'admin' ]} />
+                <Route exact path="/register" component={Register} />
+                <AuthRoute exact path="/create" component={CreateGuitar} allowedRoles={['admin']} />
                 <AuthRoute exact path="/logout" component={Logout} />
                 <Route component={NotFound} />
               </Switch>

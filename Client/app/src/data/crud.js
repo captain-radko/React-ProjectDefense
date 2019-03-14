@@ -6,7 +6,7 @@ function request(method) {
             ? { 'Authorization': `Bearer ${token}` }
             : {}
     }
-
+ 
     return async (url, data, options) => {
         const authHeader = getAuthHeader();
         const response = await fetch(url, {

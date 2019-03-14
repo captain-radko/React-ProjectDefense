@@ -10,8 +10,8 @@ const Header = ({ isLoggedIn }) => {
                     <Navbar.Brand href="/">Stringify</Navbar.Brand>
                     <Nav className="mr-auto">
                         <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/guitars/electric">Electric</Nav.Link>
-                        <Nav.Link href="/guitars/acoustic">Acoustic</Nav.Link>
+                        <Nav.Link href="/guitars/electric">Shop</Nav.Link>
+                        <Nav.Link href="/cart">Cart</Nav.Link>
                     </Nav>
                     {
                         isLoggedIn
@@ -22,7 +22,7 @@ const Header = ({ isLoggedIn }) => {
                             :
                             <Nav className="justify-content-end">
                                 <Nav.Link href="/login">Login</Nav.Link>
-                                <Nav.Link href="/signup">Register</Nav.Link>
+                                <Nav.Link href="/register">Register</Nav.Link>
                             </Nav>
                     }
                 </div>

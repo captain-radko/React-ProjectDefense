@@ -1,26 +1,114 @@
 import React, { Component } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
+import RegisterService from "../services/register-service";
 
 class Register extends Component {
+    static service = new RegisterService();
+
+    state = {
+        username: '',
+        password: '',
+        email: '',
+        error: ''
+    }
+
+    handleChange = ({ target }) => {
+        this.setState({
+            [target.name]: target.value,
+        })
+    };
+
+    handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const { username, email, password } = this.state;
+
+        const credentials = {
+            username,
+            email,
+            password
+        }
+
+        this.setState({
+            error: ''
+        }, async () => {
+            try {
+
+                const result = await Register.service.register(credentials);
+
+                if (!result.success) {
+                    const errors = Object.values(result.errors).join('\n');
+
+                    throw new Error(errors);
+                }
+
+                return (result)
+
+            } catch (error) {
+                this.setState({
+                    error: error.message,
+                })
+            }
+        })
+    }
+
     render() {
+        const { username, email, password, error } = this.state;
+
+        const { isLoggedIn } = this.props;
+
+
+        if (isLoggedIn) {
+            return (
+                <Redirect to="/" />
+            )
+        }
+
         return (
             < div class="container mt-3 wrapper" >
+                {
+                    error.length
+                        ?
+                        <Alert dismissible class="alert" variant="danger">
+                            {error}
+                        </Alert>
+                        : null
+                }
                 <h1 class="display-1 mb-5">Register here</h1>
-                <Form id="bdr" class="form">
-                    <Form.Group id="username">
+                <Form onSubmit={this.handleSubmit} id="bdr" class="form">
+                    <Form.Group>
                         <Form.Label>Username</Form.Label>
-                        <Form.Control name="username"
-                            placeholder="Enter username" />
+                        <Form.Control
+                            id="username"
+                            name="username"
+                            placeholder="Enter username"
+                            type="text"
+                            value={username}
+                            onChange={this.handleChange}
+                        />
                     </Form.Group>
-                    <Form.Group controlId="formBasicEmail">
+                    <Form.Group>
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control name="email"
-                            type="email" placeholder="Enter email" />
+                        <Form.Control
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="Enter email"
+                            value={email}
+                            onChange={this.handleChange}
+                        />
                     </Form.Group>
-                    <Form.Group controlId="formBasicPassword">
+                    <Form.Group>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control name="password"
-                            type="password" placeholder="Enter password" />
+                        <Form.Control
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="Enter password"
+                            value={password}
+                            onChange={this.handleChange}
+                        />
                     </Form.Group>
                     <Button variant="outline-secondary" type="submit">
                         Register

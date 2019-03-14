@@ -24,6 +24,12 @@ function validateSignupForm (payload) {
     errors.password = 'Password must be at least 8 characters long'
   }
 
+  if(payload.findOne(username) || payload.findOne(email)){
+    isFormValid = false
+    errors.username = "User with this username already exists!"
+    errors.email = "User with this email already exists!"
+  }
+
   if (!isFormValid) {
     message = 'Check the form for errors.'
   }
@@ -37,7 +43,7 @@ function validateSignupForm (payload) {
 
 function validateLoginForm (payload) {
   const errors = {}
-  let isFormValid = true
+  let isFormValid = true 
   let message = ''
 
   if (!payload || typeof payload.email !== 'string' || payload.email.trim().length === 0 || !validator.isEmail(payload.email)) {
