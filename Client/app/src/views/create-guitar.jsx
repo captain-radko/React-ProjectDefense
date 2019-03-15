@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import CreateGuitarService from "../services/create-guitar-service";
-import { Redirect } from 'react-router-dom';
 
 class CreateGuitar extends Component {
     static service = new CreateGuitarService();
@@ -48,9 +47,7 @@ class CreateGuitar extends Component {
                     const errors = Object.values(result.errors).join('\n');
 
                     throw new Error(errors);
-                }
-
-                return result + `${<Redirect to="/" />}`;
+                } 
 
             } catch (error) {
                 this.setState({
@@ -65,6 +62,7 @@ class CreateGuitar extends Component {
 
         return (
             < div className="container mt-3 wrapper" >
+                <h1 className="display-1 mb-5">Add guitar here</h1>
                 {
                     error.length
                         ?
@@ -73,7 +71,6 @@ class CreateGuitar extends Component {
                         </Alert>
                         : null
                 }
-                <h1 className="display-1 mb-5">Add guitar here</h1>
                 <Form onSubmit={this.handleSubmit} id="bdr" className="form">
                     <Form.Group id="guitarModelName">
                         <Form.Label>Model name</Form.Label>

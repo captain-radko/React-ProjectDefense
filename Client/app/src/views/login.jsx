@@ -75,6 +75,7 @@ class Login extends Component {
 
         return (
             < div className="container mt-3 wrapper" >
+                <h1 className='display-1 mb-5'>Login here</h1>
                 {
                     error.length
                         ?
@@ -83,7 +84,6 @@ class Login extends Component {
                         </Alert>
                         : null
                 }
-                <h1 className='display-1 mb-5'>Login here</h1>
                 <Form onSubmit={this.handleSubmit} id="bdr" className="form">
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>

@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import RegisterService from "../services/register-service";
+import AuthenticationService from "../services/auth-service";
+import { UserConsumer } from "../context/auth-context";
 
 class Register extends Component {
     static service = new RegisterService();
+    static loginService = new AuthenticationService();
 
     state = {
         username: '',
@@ -22,7 +25,8 @@ class Register extends Component {
     handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { username, email, password } = this.state;
+        const { username, email, password } = this.state; 
+        const { updateUser } = this.props;
 
         const credentials = {
             username,
@@ -36,6 +40,7 @@ class Register extends Component {
             try {
 
                 const result = await Register.service.register(credentials);
+                const loginResult = await Register.loginService.login(credentials);
 
                 if (!result.success) {
                     const errors = Object.values(result.errors).join(' ');
@@ -43,7 +48,17 @@ class Register extends Component {
                     throw new Error(errors);
                 }
 
-                return result;
+                window.localStorage.setItem('auth_token', loginResult.token);
+                window.localStorage.setItem('user', JSON.stringify({
+                    ...loginResult.user,
+                    isLoggedIn: true
+                }));
+
+                updateUser({
+                    isLoggedIn: true,
+                    updateUser,
+                    ...loginResult.user
+                });
 
             } catch (error) {
                 this.setState({
@@ -119,4 +134,20 @@ class Register extends Component {
     }
 }
 
-export default Register;
+const RegisterContext = (props) => {
+    return (
+        <UserConsumer>
+            {
+                ({ isLoggedIn, updateUser }) => (
+                    <Register
+                        {...props}
+                        isLoggedIn={isLoggedIn}
+                        updateUser={updateUser}
+                    />
+                )
+            }
+        </UserConsumer>
+    )
+}
+
+export default RegisterContext;
