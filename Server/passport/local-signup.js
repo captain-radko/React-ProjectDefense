@@ -16,7 +16,7 @@ module.exports = new PassportLocalStrategy({
   }
 
   User
-    .find({email: email})
+    .findOne({email: email})
     .then(users => {
       if (users.length > 0) {
         return done('E-mail already exists!')

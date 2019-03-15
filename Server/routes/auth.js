@@ -33,7 +33,7 @@ function validateSignupForm (payload) {
   if (!isFormValid) {
     message = 'Check the form for errors.'
   }
-
+ 
   return {
     success: isFormValid,
     message,

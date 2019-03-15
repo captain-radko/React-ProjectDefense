@@ -4,10 +4,10 @@ const encryption = require('../utilities/encryption')
 const REQUIRED_VALIDATION_MESSAGE = '{PATH} is required'
 
 let userSchema = new mongoose.Schema({
-  email: {type: String, required: REQUIRED_VALIDATION_MESSAGE, unique: true},
-  username: {type: String, required: REQUIRED_VALIDATION_MESSAGE},
+  email: {type: String, required: REQUIRED_VALIDATION_MESSAGE, unique: [true, 'User with that email already exists.']},
+  username: {type: String, required: REQUIRED_VALIDATION_MESSAGE, unique: [true, 'User with that username already exists.']},
   salt: String,
-  password: String,
+  password: String, 
   roles: [String]
 })
 

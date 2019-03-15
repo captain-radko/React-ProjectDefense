@@ -12,7 +12,7 @@ class Login extends Component {
         password: '',
         error: '',
     };
- 
+
     handleChange = ({ target }) => {
         this.setState({
             [target.name]: target.value,
@@ -57,7 +57,7 @@ class Login extends Component {
             } catch (error) {
                 this.setState({
                     error: error.message,
-                }) 
+                })
             }
         })
     };

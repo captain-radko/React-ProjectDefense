@@ -10,7 +10,7 @@ const Header = ({ isLoggedIn }) => {
                     <Navbar.Brand href="/">Stringify</Navbar.Brand>
                     <Nav className="mr-auto">
                         <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/guitars/electric">Shop</Nav.Link>
+                        <Nav.Link href="/shop">Shop</Nav.Link>
                         <Nav.Link href="/cart">Cart</Nav.Link>
                     </Nav>
                     {
