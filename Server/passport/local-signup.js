@@ -16,10 +16,10 @@ module.exports = new PassportLocalStrategy({
   }
 
   User
-    .findOne({email: email})
+    .find({email: email})
     .then(users => {
       if (users.length > 0) {
-        return done('E-mail already exists!')
+        throw new Error('E-mail already exists!')
       }
 
       user.salt = encryption.generateSalt()
@@ -34,5 +34,7 @@ module.exports = new PassportLocalStrategy({
         .catch(() => {
           return done('Something went wrong :( Check the form for errors.')
         })
+    }).catch((err) => {
+      throw Error(err);
     })
 })

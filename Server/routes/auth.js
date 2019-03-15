@@ -24,12 +24,6 @@ function validateSignupForm (payload) {
     errors.password = 'Password must be at least 8 characters long'
   }
 
-  if(payload.findOne(username) || payload.findOne(email)){
-    isFormValid = false
-    errors.username = "User with this username already exists!"
-    errors.email = "User with this email already exists!"
-  }
-
   if (!isFormValid) {
     message = 'Check the form for errors.'
   }

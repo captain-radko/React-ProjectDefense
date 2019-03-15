@@ -4,7 +4,7 @@ import { Jumbotron } from "react-bootstrap";
 class NotFound extends Component {
     render() {
         return (
-            <div class="container mt-3">
+            <div className="container mt-3">
                 <Jumbotron>
                     <h1>Nice we have an error!</h1>
                     <p>

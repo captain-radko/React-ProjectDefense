@@ -33,7 +33,7 @@ class App extends Component {
 
   updateUser = (user) => {
     this.setState({ user });
-  }
+  };
 
   render() {
     const { user } = this.state;

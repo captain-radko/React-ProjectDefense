@@ -38,12 +38,12 @@ class Register extends Component {
                 const result = await Register.service.register(credentials);
 
                 if (!result.success) {
-                    const errors = Object.values(result.errors).join('\n');
+                    const errors = Object.values(result.errors).join(' ');
 
                     throw new Error(errors);
                 }
 
-                return (result)
+                return result;
 
             } catch (error) {
                 this.setState({
@@ -66,17 +66,17 @@ class Register extends Component {
         }
 
         return (
-            < div class="container mt-3 wrapper" >
+            < div className="container mt-3 wrapper" >
+                <h1 className="display-1 mb-5">Register here</h1>
                 {
                     error.length
                         ?
-                        <Alert dismissible class="alert" variant="danger">
+                        <Alert dismissible className="alert" variant="danger">
                             {error}
                         </Alert>
                         : null
                 }
-                <h1 class="display-1 mb-5">Register here</h1>
-                <Form onSubmit={this.handleSubmit} id="bdr" class="form">
+                <Form onSubmit={this.handleSubmit} id="bdr" className="form">
                     <Form.Group>
                         <Form.Label>Username</Form.Label>
                         <Form.Control

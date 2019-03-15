@@ -2,9 +2,9 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer bg="light" class="container-fluid">
-            <div class="container">
-                <h6 class="mt-3">Stringify - Guitar Shop {new Date().getFullYear()}</h6>
+        <footer bg="light" className="container-fluid">
+            <div className="container">
+                <h6 className="mt-3">Stringify - Guitar Shop {new Date().getFullYear()}</h6>
             </div>
         </footer>
     )

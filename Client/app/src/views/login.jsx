@@ -74,17 +74,17 @@ class Login extends Component {
         }
 
         return (
-            < div class="container mt-3 wrapper" >
+            < div className="container mt-3 wrapper" >
                 {
                     error.length
                         ?
-                        <Alert dismissible class="alert" variant="danger">
+                        <Alert dismissible className="alert" variant="danger">
                             {error}
                         </Alert>
                         : null
                 }
-                <h1 class='display-1 mb-5'>Login here</h1>
-                <Form onSubmit={this.handleSubmit} id="bdr" class="form">
+                <h1 className='display-1 mb-5'>Login here</h1>
+                <Form onSubmit={this.handleSubmit} id="bdr" className="form">
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control name="email" value={email}
