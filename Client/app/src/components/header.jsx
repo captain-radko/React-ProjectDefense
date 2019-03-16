@@ -1,10 +1,8 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { UserConsumer } from '../context/auth-context';
-import Auth from "../utils/auth";
 
-const Header = ({ isLoggedIn }) => {
-    const isAdmin = Auth.isUserAdmin;
+const Header = ({ isLoggedIn, isAdmin }) => {
 
     return (
         <header>
@@ -16,9 +14,7 @@ const Header = ({ isLoggedIn }) => {
                         <Nav.Link href="/all">Shop</Nav.Link>
                         <Nav.Link href="/cart">Cart</Nav.Link>
                         {
-                            isLoggedIn && isAdmin
-                                ? <Nav.Link href="/create">Add guitar</Nav.Link>
-                                : null
+                            isAdmin ? <Nav.Link href="/create">Add guitar</Nav.Link> : null
                         }
                     </Nav>
                     {
@@ -43,8 +39,8 @@ const HeaderContext = (props) => {
     return (
         <UserConsumer>
             {
-                ({ isLoggedIn }) => (
-                    <Header {...props} isLoggedIn={isLoggedIn} />
+                ({ isLoggedIn, isAdmin }) => (
+                    <Header {...props} isAdmin={isAdmin} isLoggedIn={isLoggedIn} />
                 )
             }
         </UserConsumer>

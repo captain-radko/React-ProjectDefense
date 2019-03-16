@@ -1,18 +1,21 @@
 class Auth {
-  
-    static isUserAdmin () {
-      let roles = window.localStorage.getItem('roles')
-      if (!roles) {
-        return false
-      }
-  
-      roles = roles.split(',')
-      if (roles.includes('Admin')) {
-        return true
-      }
-  
-      return false
+  static getUser() {
+    const userJson = window.localStorage.getItem('user');
+
+    if (userJson) {
+      return JSON.parse(userJson);
+    } else {
+      return {};
     }
   }
-  
-  export default Auth
+
+  static isUserAdmin() {
+    let user = this.getUser();
+    if (user.roles.includes('Admin')) {
+      return true;
+    }
+    return false;
+  }
+}
+
+export default Auth

@@ -27,6 +27,10 @@ class GuitarDetails extends Component {
     }
 
     render() {
+        let img = {
+            width: '600px',
+            height: '600px'
+        }
 
         return (
             < div className="container mt-3 wrapper" >
@@ -34,32 +38,49 @@ class GuitarDetails extends Component {
                     this.state.isLoading
                         ?
                         <Fragment>
-                            <div className="spinner-border mt-5" role="status">
-                                <span className="sr-only">Loading...</span>
-                            </div>
+                            <span>Loading...</span>
                         </Fragment>
                         :
                         <Fragment>
-                            <img src={this.state.guitar.image} alt="" />
-                            <br />
-                            <label>Model Name:</label>
-                            <span> {this.state.guitar.guitarModelName}</span>
-                            <br />
-                            <label>Head:</label>
-                            <span> {this.state.guitar.head}</span>
-                            <br />
-                            <label>Body:</label>
-                            <span> {this.state.guitar.body}</span>
-                            <br />
-                            <label>Neck:</label>
-                            <span> {this.state.guitar.neck}</span>
-                            <br />
-                            <label>Pickups:</label>
-                            <span> {this.state.guitar.pickups}</span>
-                            <br />
-                            <label>Price:</label>
-                            <span> {this.state.guitar.price}$</span>
-                            <br />
+                            <div className="row mt-5">
+                                <div className="col-md-5 mt-5">
+                                    <img style={img} src={this.state.guitar.image} alt="" />
+                                </div>
+                                <div className="col-md-7 mt-5">
+                                    <table className="table table-striped">
+                                        <tbody>
+                                            <tr>
+                                                <td>Model Name</td>
+                                                <td>{this.state.guitar.guitarModelName}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Head</td>
+                                                <td>{this.state.guitar.head}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Body</td>
+                                                <td>{this.state.guitar.body}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Neck</td>
+                                                <td>{this.state.guitar.neck}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Pickups</td>
+                                                <td>{this.state.guitar.pickups}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Price</td>
+                                                <td>{this.state.guitar.price}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <button type="button" className="mt-5 btn btn-secondary btn-lg btn-block">
+                                        Buy
+                                    </button>
+                                </div>
+                            </div>
                         </Fragment>
                 }
             </div >

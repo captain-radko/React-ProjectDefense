@@ -13,6 +13,8 @@ class AllGuitars extends Component {
 
         this.fetchGuitars = this.fetchGuitars.bind(this);
         this.openGuitarDetails = this.openGuitarDetails.bind(this);
+        this.deleteGuitar = this.deleteGuitar.bind(this);
+        this.openGuitarEdit = this.openGuitarEdit.bind(this);
     }
 
     componentDidMount() {
@@ -36,8 +38,27 @@ class AllGuitars extends Component {
             })
     }
 
-    openGuitarDetails(id){
+    openGuitarDetails(id) {
         this.props.history.push(`/details/${id}`);
+    }
+
+    openGuitarEdit(id) {
+        this.props.history.push(`/edit/${id}`);
+    }
+
+    deleteGuitar(id) {
+        guitarService.deleteGuitar(id)
+            .then(res => {
+                if (res.status === 200) {
+                    res.json().then(data => {
+                        window.location.reload();
+                    });
+                } else {
+                    res.json().then(err => {
+                        console.log(err.message);
+                    });
+                }
+            });
     }
 
     render() {
@@ -45,21 +66,26 @@ class AllGuitars extends Component {
         return (
             < div className="container mt-3 wrapper" >
                 <h1 className="display-3">Get your guitar today!</h1>
-                {
-                    this.state.render
-                        ? this.state.guitars.map((guitar, index) => {
-                            return (
-                                <ListItem
-                                    key={index}
-                                    itemId={guitar._id}
-                                    guitarModelName={guitar.guitarModelName}
-                                    imageUrl={guitar.image}
-                                    openItemDetails={this.openGuitarDetails}
-                                />
-                            )
-                        })
-                        : < div className="container mt-3 wrapper" >Shop is empty, sorry</div>
-                }
+                <div className="row">
+                    {
+                        this.state.render
+                            ? this.state.guitars.map((guitar, index) => {
+                                return (
+                                    <ListItem
+                                        key={index}
+                                        itemId={guitar._id}
+                                        guitarModelName={guitar.guitarModelName}
+                                        imageUrl={guitar.image}
+                                        openItemDetails={this.openGuitarDetails}
+                                        openItemDelete={this.deleteGuitar}
+                                        openItemEdit={this.openGuitarEdit}
+                                    />
+                                )
+                            })
+                            : < div className="container mt-3 wrapper" >Shop is empty, sorry</div>
+                    }
+                </div>
+                <br />
             </div >
         )
     }

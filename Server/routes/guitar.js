@@ -106,6 +106,10 @@ router.get('/all', (req, res) => {
     })
 })
 
+router.delete('/delete/:guitarId', guitarController.delete)
+
 router.get('/details/:guitarId', guitarController.getById)
+
+router.put('/edit/:guitarId', guitarController.edit)
 
 module.exports = router
