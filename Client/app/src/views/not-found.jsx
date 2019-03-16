@@ -6,7 +6,7 @@ class NotFound extends Component {
         return (
             <div className="container mt-3">
                 <Jumbotron>
-                    <h1>Nice we have an error!</h1>
+                    <h1>Nice we have an error! Page Not Found!</h1>
                     <p>
                         If you keep seeing this message, please contact the admins.
                     </p>

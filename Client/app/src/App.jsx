@@ -13,6 +13,7 @@ import CreateGuitar from './views/create-guitar';
 import Header from './components/header';
 import Footer from './components/footer';
 import AllGuitars from './views/all-guitars';
+import GuitarDetails from './views/guitar-details';
 
 class App extends Component {
   constructor(props) {
@@ -26,20 +27,11 @@ class App extends Component {
         ...defaultState,
         ...parsedUser,
         updateUser: this.updateUser,
-      },
-      guitars: []
+      }
     }
 
   }
-
-  componentDidMount() {
-    fetch('http://localhost:5000/guitar/all')
-      .then((res) => res.json())
-      .then(guitar => this.setState({
-        guitars: guitar.guitars
-      }))
-  }
-
+  
   updateUser = (user) => {
     this.setState({ user });
   };
@@ -58,6 +50,7 @@ class App extends Component {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/all" component={AllGuitars} />
+                <Route path="/details/:guitarId" component={GuitarDetails} />
                 <AuthRoute exact path="/create" component={CreateGuitar} allowedRoles={['admin']} />
                 <AuthRoute exact path="/logout" component={Logout} />
                 <Route component={NotFound} />

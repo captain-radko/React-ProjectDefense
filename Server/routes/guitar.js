@@ -1,6 +1,7 @@
 const express = require('express')
 const authCheck = require('../config/auth-check')
 const Guitar = require('../models/Guitar')
+const guitarController = require('../controllers/guitar-controller')
 
 const router = new express.Router()
 
@@ -104,5 +105,7 @@ router.get('/all', (req, res) => {
       res.status(200).json(guitars)
     })
 })
+
+router.get('/details/:guitarId', guitarController.getById)
 
 module.exports = router

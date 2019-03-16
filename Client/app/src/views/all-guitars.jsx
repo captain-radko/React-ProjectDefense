@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import ListItem from "../components/list-item";
-import getAllService from "../services/get-all-guitars";
+import guitarService from "../services/guitar-service";
 
 class AllGuitars extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            guitars: null,
+            guitars: [],
             render: false
         }
 
         this.fetchGuitars = this.fetchGuitars.bind(this);
+        this.openGuitarDetails = this.openGuitarDetails.bind(this);
     }
 
     componentDidMount() {
@@ -19,7 +20,7 @@ class AllGuitars extends Component {
     }
 
     fetchGuitars() {
-        getAllService.getAllGuitars()
+        guitarService.getAllGuitars()
             .then(res => {
                 if (res.status === 200) {
                     res.json()
@@ -30,10 +31,13 @@ class AllGuitars extends Component {
                     res.json()
                         .then(err => {
                             console.log(err.message);
-
                         })
                 }
             })
+    }
+
+    openGuitarDetails(id){
+        this.props.history.push(`/details/${id}`);
     }
 
     render() {
@@ -47,7 +51,10 @@ class AllGuitars extends Component {
                             return (
                                 <ListItem
                                     key={index}
+                                    itemId={guitar._id}
+                                    guitarModelName={guitar.guitarModelName}
                                     imageUrl={guitar.image}
+                                    openItemDetails={this.openGuitarDetails}
                                 />
                             )
                         })
