@@ -12,11 +12,11 @@ import CreateGuitar from './views/create-guitar';
 
 import Header from './components/header';
 import Footer from './components/footer';
+import AllGuitars from './views/all-guitars';
 
 class App extends Component {
   constructor(props) {
     super(props);
-
     const userFromStorage = window.localStorage.getItem('user');
 
     const parsedUser = userFromStorage ? JSON.parse(userFromStorage) : {};
@@ -26,9 +26,18 @@ class App extends Component {
         ...defaultState,
         ...parsedUser,
         updateUser: this.updateUser,
-      }
+      },
+      guitars: []
     }
 
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:5000/guitar/all')
+      .then((res) => res.json())
+      .then(guitar => this.setState({
+        guitars: guitar.guitars
+      }))
   }
 
   updateUser = (user) => {
@@ -48,6 +57,7 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
+                <Route exact path="/all" component={AllGuitars} />
                 <AuthRoute exact path="/create" component={CreateGuitar} allowedRoles={['admin']} />
                 <AuthRoute exact path="/logout" component={Logout} />
                 <Route component={NotFound} />
