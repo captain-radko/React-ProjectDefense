@@ -35,6 +35,9 @@ class Login extends Component {
         }, async () => {
             try {
                 const result = await Login.service.login(credentials);
+                const isAdmin = result.user.roles
+                    .map(role => role.toLowerCase())
+                    .some(role => ['admin'].includes(role));
 
                 if (!result.success) {
                     const errors = Object.values(result.errors).join('\n');
@@ -45,12 +48,9 @@ class Login extends Component {
                 window.localStorage.setItem('auth_token', result.token);
                 window.localStorage.setItem('user', JSON.stringify({
                     ...result.user,
+                    isAdmin: isAdmin,
                     isLoggedIn: true
                 }));
-                
-                const isAdmin = result.user.roles
-                    .map(role => role.toLowerCase())
-                    .some(role => ['admin'].includes(role));
 
                 updateUser({
                     isAdmin,
@@ -113,9 +113,10 @@ const LoginContext = (props) => {
     return (
         <UserConsumer>
             {
-                ({ isLoggedIn, updateUser }) => (
+                ({ isLoggedIn, updateUser, isAdmin }) => (
                     <Login
                         {...props}
+                        isAdmin={isAdmin}
                         isLoggedIn={isLoggedIn}
                         updateUser={updateUser}
                     />

@@ -47,7 +47,9 @@ class CreateGuitar extends Component {
                     const errors = Object.values(result.errors).join('\n');
 
                     throw new Error(errors);
-                } 
+                }
+
+                window.location.replace('http://localhost:3000/all');
 
             } catch (error) {
                 this.setState({

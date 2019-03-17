@@ -14,7 +14,7 @@ const Header = ({ isLoggedIn, isAdmin }) => {
                         <Nav.Link href="/all">Shop</Nav.Link>
                         <Nav.Link href="/cart">Cart</Nav.Link>
                         {
-                            isAdmin ? <Nav.Link href="/create">Add guitar</Nav.Link> : null
+                            isAdmin && <Nav.Link href="/create">Add guitar</Nav.Link>
                         }
                     </Nav>
                     {
