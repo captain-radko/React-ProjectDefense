@@ -12,7 +12,9 @@ const Header = ({ isLoggedIn, isAdmin }) => {
                     <Nav className="mr-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/all">Shop</Nav.Link>
-                        <Nav.Link href="/cart">Cart</Nav.Link>
+                        {
+                            isLoggedIn && <Nav.Link href="/cart">Cart</Nav.Link>
+                        }
                         {
                             isAdmin && <Nav.Link href="/create">Add guitar</Nav.Link>
                         }

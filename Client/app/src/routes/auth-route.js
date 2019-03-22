@@ -12,7 +12,7 @@ const AdminRoute = ({ isLoggedIn, allowedRoles = [], roles, ...otherProps }) => 
     return <Route {...otherProps} />
 }
 
-const AuthRouteContext = (props) => {
+const AdminRouteContext = (props) => {
     return (
         <UserConsumer>
             {
@@ -24,4 +24,4 @@ const AuthRouteContext = (props) => {
     )
 }
 
-export default AuthRouteContext;
+export default AdminRouteContext;

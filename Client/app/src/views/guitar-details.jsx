@@ -88,8 +88,8 @@ class GuitarDetails extends Component {
                                     ?
                                     <div className="row mt-5">
                                         <div className="col-md-12 col-lg-12 col-xl-12">
-                                            <h1 className="display-1">Before you buy</h1>
-                                            <ReactPlayer width="1140px" height="720px" url={this.state.guitar.video} controls></ReactPlayer>
+                                            <h1 className="display-1 mb-5">Before you buy</h1>
+                                            <ReactPlayer className="center" width="1140px" height="720px" url={this.state.guitar.video} controls></ReactPlayer>
                                             <br />
                                         </div>
                                     </div>

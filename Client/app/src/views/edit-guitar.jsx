@@ -13,7 +13,8 @@ class EditGuitar extends Component {
             neck: '',
             body: '',
             price: '',
-            pickups: ''
+            pickups: '',
+            video: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -32,7 +33,8 @@ class EditGuitar extends Component {
                             neck: data.result.neck,
                             body: data.result.body,
                             price: data.result.price,
-                            pickups: data.result.pickups
+                            pickups: data.result.pickups,
+                            video: data.result.video
                         };
 
                         this.setState(guitar);
@@ -61,7 +63,8 @@ class EditGuitar extends Component {
             neck: this.state.neck,
             body: this.state.body,
             price: this.state.price,
-            pickups: this.state.pickups
+            pickups: this.state.pickups,
+            video: this.state.video
         };
         const guitarId = this.props.match.params.guitarId
 
@@ -83,7 +86,7 @@ class EditGuitar extends Component {
 
     render() {
         return (
-            < div className="container mt-3 wrapper" >
+            <div className="container mt-3 wrapper">
                 <h1 className="display-1 mb-5">Edit guitar here</h1>
                 <Form onSubmit={this.handleSubmit} id="bdr" className="form">
                     <Form.Group id="guitarModelName">
@@ -92,7 +95,7 @@ class EditGuitar extends Component {
                             name="guitarModelName"
                             placeholder="model name"
                             type='text'
-                            value={this.state.guitarModelName} 
+                            value={this.state.guitarModelName}
                             onChange={this.handleChange}
                         />
                     </Form.Group>
@@ -103,7 +106,7 @@ class EditGuitar extends Component {
                             type="number"
                             min='100'
                             placeholder="Enter price"
-                            value={this.state.price} 
+                            value={this.state.price}
                             onChange={this.handleChange}
                         />
                     </Form.Group>
@@ -113,7 +116,7 @@ class EditGuitar extends Component {
                             name="head"
                             type="text"
                             placeholder="head"
-                            value={this.state.head} 
+                            value={this.state.head}
                             onChange={this.handleChange}
                         />
                     </Form.Group>
@@ -123,7 +126,7 @@ class EditGuitar extends Component {
                             name="body"
                             type="text"
                             placeholder="body"
-                            value={this.state.body} 
+                            value={this.state.body}
                             onChange={this.handleChange}
                         />
                     </Form.Group>
@@ -133,7 +136,7 @@ class EditGuitar extends Component {
                             name="neck"
                             type="text"
                             placeholder="neck"
-                            value={this.state.neck} 
+                            value={this.state.neck}
                             onChange={this.handleChange}
                         />
                     </Form.Group>
@@ -143,17 +146,27 @@ class EditGuitar extends Component {
                             name="pickups"
                             type="text"
                             placeholder="pickups"
-                            value={this.state.price} 
+                            value={this.state.price}
                             onChange={this.handleChange}
                         />
                     </Form.Group>
-                    <Form.Group id="pickups">
+                    <Form.Group id="image">
                         <Form.Label>Image URL</Form.Label>
                         <Form.Control
                             name="image"
                             type="text"
                             placeholder="image"
-                            value={this.state.image} 
+                            value={this.state.image}
+                            onChange={this.handleChange}
+                        />
+                    </Form.Group>
+                    <Form.Group id="video">
+                        <Form.Label>Image URL</Form.Label>
+                        <Form.Control
+                            name="video"
+                            type="text"
+                            placeholder="video"
+                            value={this.state.video}
                             onChange={this.handleChange}
                         />
                     </Form.Group>

@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { UserProvider, defaultState } from "./context/auth-context";
-import AuthRoute from "./routes/auth-route";
+import AdminRoute from "./routes/auth-route";
+import UserRoute from './routes/user-route';
 
 import Home from './views/home';
 import NotFound from './views/not-found';
@@ -16,6 +17,7 @@ import EditGuitar from './views/edit-guitar';
 
 import Header from './components/header';
 import Footer from './components/footer';
+import Cart from './views/cart';
 
 class App extends Component {
   constructor(props) {
@@ -53,9 +55,10 @@ class App extends Component {
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/all" component={AllGuitars} />
                 <Route path="/details/:guitarId" component={GuitarDetails} />
-                <AuthRoute exact path="/create" component={CreateGuitar} allowedRoles={['admin']} />
-                <AuthRoute path="/edit/:guitarId" component={EditGuitar} allowedRoles={['admin']} />
-                <AuthRoute exact path="/logout" component={Logout} />
+                <UserRoute exact path="/cart" component={Cart}/>
+                <AdminRoute exact path="/create" component={CreateGuitar} allowedRoles={['admin']} />
+                <AdminRoute path="/edit/:guitarId" component={EditGuitar} allowedRoles={['admin']} />
+                <AdminRoute exact path="/logout" component={Logout} />
                 <Route component={NotFound} />
               </Switch>
               <Footer />

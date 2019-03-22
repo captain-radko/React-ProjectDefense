@@ -5,8 +5,14 @@ class Home extends Component {
     render() {
         return (
             <div className="container wrapper">
-                <h1>Song of the day</h1>
-                <ReactPlayer width="1140px" height="720px" url="https://www.youtube.com/watch?v=oIMJr-xXzmA" controls></ReactPlayer>
+                <h1 className='display-1 mb-5'>Song of the day</h1>
+                <ReactPlayer
+                    className="center"
+                    width="720px"
+                    height="480px"
+                    url="https://www.youtube.com/watch?v=oIMJr-xXzmA"
+                    controls>
+                </ReactPlayer>
             </div>
         )
     }
