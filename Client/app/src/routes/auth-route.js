@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from "react-router-dom";
 import { UserConsumer } from '../context/auth-context';
 
-const AuthRoute = ({ isLoggedIn, allowedRoles = [], roles, ...otherProps }) => {
+const AdminRoute = ({ isLoggedIn, allowedRoles = [], roles, ...otherProps }) => {
     const isAllowed =  (!allowedRoles.length) || (roles.map(role => role.toLowerCase()).some(role => allowedRoles.includes(role)));
 
     if (!isLoggedIn || !isAllowed) {
@@ -17,7 +17,7 @@ const AuthRouteContext = (props) => {
         <UserConsumer>
             {
                 ({ isLoggedIn, roles }) => (
-                    <AuthRoute {...props} roles={roles} isLoggedIn={isLoggedIn} />
+                    <AdminRoute {...props} roles={roles} isLoggedIn={isLoggedIn} />
                 )
             }
         </UserConsumer>

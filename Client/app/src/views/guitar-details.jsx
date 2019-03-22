@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from "react";
 import guitarService from '../services/guitar-service';
+import ReactPlayer from 'react-player';
+
 
 class GuitarDetails extends Component {
     constructor(props) {
@@ -43,10 +45,10 @@ class GuitarDetails extends Component {
                         :
                         <Fragment>
                             <div className="row mt-5">
-                                <div className="col-md-5 mt-5">
+                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-7 mt-5">
                                     <img style={img} src={this.state.guitar.image} alt="" />
                                 </div>
-                                <div className="col-md-7 mt-5">
+                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-5 mt-5">
                                     <table className="table table-striped">
                                         <tbody>
                                             <tr>
@@ -81,6 +83,19 @@ class GuitarDetails extends Component {
                                     </button>
                                 </div>
                             </div>
+                            {
+                                this.state.guitar.video
+                                    ?
+                                    <div className="row mt-5">
+                                        <div className="col-md-12 col-lg-12 col-xl-12">
+                                            <h1 className="display-1">Before you buy</h1>
+                                            <ReactPlayer width="1140px" height="720px" url={this.state.guitar.video} controls></ReactPlayer>
+                                            <br />
+                                        </div>
+                                    </div>
+                                    :
+                                    null
+                            }
                         </Fragment>
                 }
             </div >

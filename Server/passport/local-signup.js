@@ -16,10 +16,10 @@ module.exports = new PassportLocalStrategy({
   }
 
   User
-    .find({email: email})
+    .find({ email: email })
     .then(users => {
       if (users.length > 0) {
-        throw new Error('E-mail already exists!')
+        throw new Error("Email already exist!");
       }
 
       user.salt = encryption.generateSalt()

@@ -4,7 +4,7 @@ const validator = require('validator')
 
 const router = new express.Router()
 
-function validateSignupForm (payload) {
+function validateSignupForm(payload) {
   const errors = {}
   let isFormValid = true
   let message = ''
@@ -27,7 +27,7 @@ function validateSignupForm (payload) {
   if (!isFormValid) {
     message = 'Check the form for errors.'
   }
- 
+
   return {
     success: isFormValid,
     message,
@@ -35,9 +35,9 @@ function validateSignupForm (payload) {
   }
 }
 
-function validateLoginForm (payload) {
+function validateLoginForm(payload) {
   const errors = {}
-  let isFormValid = true 
+  let isFormValid = true
   let message = ''
 
   if (!payload || typeof payload.email !== 'string' || payload.email.trim().length === 0 || !validator.isEmail(payload.email)) {

@@ -35,15 +35,16 @@ class Login extends Component {
         }, async () => {
             try {
                 const result = await Login.service.login(credentials);
-                const isAdmin = result.user.roles
-                    .map(role => role.toLowerCase())
-                    .some(role => ['admin'].includes(role));
 
                 if (!result.success) {
-                    const errors = Object.values(result.errors).join('\n');
+                    const errors = Object.values(result.errors).join(' ');
 
                     throw new Error(errors);
                 }
+
+                const isAdmin = result.user.roles
+                    .map(role => role.toLowerCase())
+                    .some(role => ['admin'].includes(role));
 
                 window.localStorage.setItem('auth_token', result.token);
                 window.localStorage.setItem('user', JSON.stringify({
@@ -85,7 +86,9 @@ class Login extends Component {
                     error.length
                         ?
                         <Alert dismissible className="alert" variant="danger">
-                            {error}
+                            {
+                                error
+                            }
                         </Alert>
                         : null
                 }

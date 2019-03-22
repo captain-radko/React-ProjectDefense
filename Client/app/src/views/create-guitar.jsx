@@ -13,6 +13,7 @@ class CreateGuitar extends Component {
         neck: '',
         pickups: '',
         image: '',
+        video: '',
         error: '',
     };
 
@@ -25,7 +26,7 @@ class CreateGuitar extends Component {
     handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { guitarModelName, price, head, body, neck, pickups, image } = this.state;
+        const { guitarModelName, price, head, body, neck, pickups, image, video } = this.state;
 
         const credentials = {
             guitarModelName,
@@ -34,7 +35,8 @@ class CreateGuitar extends Component {
             body,
             neck,
             pickups,
-            image
+            image,
+            video
         }
 
         this.setState({
@@ -60,7 +62,7 @@ class CreateGuitar extends Component {
     };
 
     render() {
-        const { guitarModelName, price, head, body, neck, pickups, image, error } = this.state;
+        const { guitarModelName, price, head, body, neck, pickups, image, error, video } = this.state;
 
         return (
             < div className="container mt-3 wrapper" >
@@ -143,6 +145,16 @@ class CreateGuitar extends Component {
                             placeholder="image"
                             onChange={this.handleChange}
                             value={image}
+                        />
+                    </Form.Group>
+                    <Form.Group id="pickups">
+                        <Form.Label>Video</Form.Label>
+                        <Form.Control
+                            name="video"
+                            type="text"
+                            placeholder="video"
+                            onChange={this.handleChange}
+                            value={video}
                         />
                     </Form.Group>
                     <Button variant="outline-secondary" type="submit">
