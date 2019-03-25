@@ -161,7 +161,7 @@ class EditGuitar extends Component {
                         />
                     </Form.Group>
                     <Form.Group id="video">
-                        <Form.Label>Image URL</Form.Label>
+                        <Form.Label>Video</Form.Label>
                         <Form.Control
                             name="video"
                             type="text"

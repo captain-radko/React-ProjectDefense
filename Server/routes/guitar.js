@@ -47,6 +47,11 @@ function validateCreateForm(payload) {
     errors.image = 'Please enter valid Image URL. Image URL must be at least 14 symbols.'
   }
 
+  if(!payload || typeof payload.video !== 'string' || !payload.video.includes('youtube')){
+    isFormValid = false
+    errors.video = 'Please provide a youtube video!'
+  }
+
   if (!isFormValid) {
     message = 'Check the form for errors.'
   }

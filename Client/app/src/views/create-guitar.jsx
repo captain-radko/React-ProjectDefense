@@ -148,7 +148,7 @@ class CreateGuitar extends Component {
                         />
                     </Form.Group>
                     <Form.Group id="pickups">
-                        <Form.Label>Video</Form.Label>
+                        <Form.Label>Video(optional)</Form.Label>
                         <Form.Control
                             name="video"
                             type="text"

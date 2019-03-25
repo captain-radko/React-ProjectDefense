@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import { UserProvider, defaultState } from "./context/auth-context";
+
 import AdminRoute from "./routes/auth-route";
 import UserRoute from './routes/user-route';
 
@@ -10,14 +12,13 @@ import Login from './views/login';
 import Register from './views/register';
 import Logout from "./views/logout";
 import CreateGuitar from './views/create-guitar';
-
 import AllGuitars from './views/all-guitars';
 import GuitarDetails from './views/guitar-details';
 import EditGuitar from './views/edit-guitar';
+import Cart from './views/cart';
 
 import Header from './components/header';
 import Footer from './components/footer';
-import Cart from './views/cart';
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class App extends Component {
     }
 
   }
-  
+
   updateUser = (user) => {
     this.setState({ user });
   };
@@ -55,9 +56,9 @@ class App extends Component {
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/all" component={AllGuitars} />
                 <Route path="/details/:guitarId" component={GuitarDetails} />
-                <UserRoute exact path="/cart" component={Cart}/>
+                <UserRoute exact path="/cart" component={Cart} />
                 <AdminRoute exact path="/create" component={CreateGuitar} allowedRoles={['admin']} />
-                <AdminRoute path="/edit/:guitarId" component={EditGuitar} allowedRoles={['admin']} />
+                <AdminRoute exact path="/edit/:guitarId" component={EditGuitar} allowedRoles={['admin']} />
                 <AdminRoute exact path="/logout" component={Logout} />
                 <Route component={NotFound} />
               </Switch>

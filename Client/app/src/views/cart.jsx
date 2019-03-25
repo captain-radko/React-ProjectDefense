@@ -46,25 +46,9 @@ class Cart extends Component {
                         <tr>
                             <td data-th="Product">
                                 <div className="row">
-                                    <div className="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." className="img-responsive" /></div>
-                                    <div className="col-sm-10">
-                                        <h4 className="nomargin">Product 1</h4>
+                                    <div className="col-sm-2 hidden-xs">
+                                        <img src="http://placehold.it/100x100" alt="..." className="img-responsive" />
                                     </div>
-                                </div>
-                            </td>
-                            <td data-th="Price">$1.99</td>
-                            <td data-th="Quantity">
-                                <input min="1" type="number" className="form-control text-center" />
-                            </td>
-                            <td data-th="Subtotal" className="text-center"></td>
-                            <td className="actions" data-th="">
-                                <button className="btn btn-danger btn-sm mt-4"><i className="fa fa-trash-o"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td data-th="Product">
-                                <div className="row">
-                                    <div className="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." className="img-responsive" /></div>
                                     <div className="col-sm-10">
                                         <h4 className="nomargin">Product 1</h4>
                                     </div>
@@ -93,7 +77,11 @@ class Cart extends Component {
                             </td>
                             <td colSpan="2" className="hidden-xs"></td>
                             <td className="hidden-xs text-center"><strong>Total $1.99</strong></td>
-                            <td><button type="submit" className="btn btn-success btn-block">Order <i className="fa fa-angle-right"></i></button></td>
+                            <td>
+                                <button type="submit" className="btn btn-success btn-block">
+                                    Order <i className="fa fa-angle-right"></i>
+                                </button>
+                            </td>
                         </tr>
                     </tfoot>
                 </table>

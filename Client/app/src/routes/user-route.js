@@ -4,7 +4,7 @@ import { UserConsumer } from '../context/auth-context';
 
 const UserRoute = ({ isLoggedIn, ...otherProps }) => {
     if (!isLoggedIn) {
-        return <Redirect to="/not-found" />
+        return <Redirect to="/login" />
     }
 
     return <Route {...otherProps} />
