@@ -15,6 +15,7 @@ class AllGuitars extends Component {
         this.openGuitarDetails = this.openGuitarDetails.bind(this);
         this.deleteGuitar = this.deleteGuitar.bind(this);
         this.openGuitarEdit = this.openGuitarEdit.bind(this);
+        this.addToCart = this.addToCart.bind(this);
     }
 
     componentDidMount() {
@@ -36,6 +37,12 @@ class AllGuitars extends Component {
                         })
                 }
             })
+    }
+
+    addToCart = () => {
+        const { guitar } = this.props;
+
+        guitarService.addToCart(guitar);
     }
 
     openGuitarDetails(id) {
@@ -79,10 +86,12 @@ class AllGuitars extends Component {
                                         openItemDetails={this.openGuitarDetails}
                                         openItemDelete={this.deleteGuitar}
                                         openItemEdit={this.openGuitarEdit}
+                                        addToCart={this.addToCart}
                                     />
                                 )
                             })
-                            : < div className="container mt-3 wrapper" >Shop is empty, sorry</div>
+                            :
+                            < div className="container mt-3 wrapper" >Shop is empty, sorry</div>
                     }
                 </div>
                 <br />

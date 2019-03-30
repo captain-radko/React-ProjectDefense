@@ -24,9 +24,10 @@ const ListItem = (props) => {
                                     isAdmin
                                         ?
                                         <Fragment>
+                                            <button onClick={() => props.addToCart(props.itemId)} className="mr-1 btn btn-outline-secondary">Buy</button>
                                             <button onClick={() => props.openItemDetails(props.itemId)} className="mr-1 btn btn-outline-secondary">Details</button>
                                             <button onClick={() => props.openItemEdit(props.itemId)} className="mr-1 btn btn-outline-warning">Edit</button>
-                                            <button onClick={() => props.openItemDelete(props.itemId)} className="btn btn-outline-danger">Delete</button>
+                                            <button onClick={() => props.openItemDelete(props.itemId)} className="mt-1 btn btn-outline-danger">Delete</button>
                                         </Fragment>
                                         :
                                         <Fragment>
