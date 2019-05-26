@@ -6,6 +6,7 @@ class GuitarToCart extends Component {
         const { guitar } = this.props;
         this.props.removeGuitar(guitar)
     }
+
     render() {
 
         const { guitar } = this.props;
@@ -15,20 +16,18 @@ class GuitarToCart extends Component {
                 <td data-th="Product">
                     <div className="row">
                         <div className="col-sm-2 hidden-xs">
-                            <img src="http://placehold.it/100x100" alt="..." className="img-responsive" />
+                            <img src={guitar.image} alt="..." className="img-responsive" />
                         </div>
                         <div className="col-sm-10">
                             <h4 className="nomargin">{guitar.guitarModelName}</h4>
                         </div>
                     </div>
                 </td>
-                <td data-th="Price">{guitar.Price}</td>
-                <td data-th="Quantity">
-                    <input min="1" type="number" className="form-control text-center" />
-                </td>
+                <td data-th="Price">{guitar.price}</td>
+                <td data-th=""></td>
                 <td data-th="Subtotal" className="text-center"></td>
                 <td className="actions" data-th="">
-                    <button className="btn btn-danger btn-sm mt-4"><i className="fa fa-trash-o"></i></button>
+                    <button className="btn btn-danger btn-sm mt-4"><i onClick={this.remove} className="fa fa-trash-o"></i></button>
                 </td>
             </tr>
         );

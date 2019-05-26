@@ -13,6 +13,19 @@ class Cart extends Component {
         }
     }
 
+    componentDidMount() {
+        try {
+            const guitars = JSON.parse(window.localStorage.getItem("guitars")) || [];
+
+            if (guitars !== "null") {
+                this.setState({ guitars });
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     removeGuitar = async (guitar) => {
         const isRemoved = await guitarService.removeFromCart(guitar);
 
@@ -60,8 +73,7 @@ class Cart extends Component {
                     !guitars.length
                         ?
                         <div>
-                            <br />
-                            <h2 className="text-center">No guitars in your cart!</h2>
+                            <h2 className="mt-5 text-center">No guitars in your cart!</h2>
                         </div>
                         :
                         <div className="container wrapper">
@@ -74,14 +86,14 @@ class Cart extends Component {
                                     <tr>
                                         <th style={wf}>Product</th>
                                         <th style={wt}>Price</th>
-                                        <th style={we}>Quantity</th>
+                                        <th style={we}></th>
                                         <th style={wtf}></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
                                         guitars.map(guitar => (
-                                            <GuitarToCart key={guitar.id} guitar={guitar} removeGuitar={this.removeGuitar} />
+                                            <GuitarToCart key={guitar._id} guitar={guitar} removeGuitar={this.removeGuitar} />
                                         ))
                                     }
                                 </tbody>
@@ -110,19 +122,6 @@ class Cart extends Component {
                 }
             </Fragment>
         )
-    }
-
-    componentDidMount() {
-        try {
-            const guitars = JSON.parse(window.localStorage.getItem("guitars")) || [];
-
-            if (guitars !== "null") {
-                this.setState({ guitars });
-            }
-
-        } catch (error) {
-            console.error(error);
-        }
     }
 }
 
